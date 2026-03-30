@@ -53,9 +53,9 @@ The final dashboard provides insights into:
 3.  **Country Rankings:** Live leaderboard of air quality by city and country.
 
 ## Project Roadmap
-- [x] Initial Infrastructure with Terraform.
-- [x] API Ingestion Script (Python).
-- [x] Kestra Workflow Automation.
+- [ ] Initial Infrastructure with Terraform.
+- [ ] API Ingestion Script (Python).
+- [ ] Kestra Workflow Automation.
 - [ ] Advanced dbt Modeling (Incremental loads).
 - [ ] Streamlit Dashboard Deployment.
 
