@@ -54,7 +54,7 @@ The final dashboard provides insights into:
 
 ## Project Roadmap
 - [X] Initial Infrastructure with Terraform.
-- [ ] API Ingestion Script (Python).
+- [X] API Ingestion Script (Python).
 - [ ] Kestra Workflow Automation.
 - [ ] Advanced dbt Modeling (Incremental loads).
 - [ ] Streamlit Dashboard Deployment.
