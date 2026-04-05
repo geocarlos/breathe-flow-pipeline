@@ -38,7 +38,7 @@ resource "google_bigquery_table" "external_openaq_raw" {
 
   external_data_configuration {
     autodetect    = true
-    source_format = "JSON"
+    source_format = "NEWLINE_DELIMITED_JSON"
     source_uris   = ["gs://${google_storage_bucket.data-lake-bucket.name}/raw/*.json"]
   }
 }
