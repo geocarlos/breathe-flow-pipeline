@@ -56,7 +56,7 @@ def upload_to_gcs(data, filename):
         data=json.dumps(data),
         content_type='application/json'
     )
-    print(f"Successfully uploaded to gs://{BUCKET_NAME}/filename")
+    print(f"Successfully uploaded to gs://{BUCKET_NAME}/{filename}")
 
 if __name__ == "__main__":
     # 1. Fetch data    
