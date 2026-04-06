@@ -3,12 +3,17 @@ import requests
 import json
 from datetime import datetime, timedelta
 from google.cloud import storage
+from dotenv import load_dotenv, find_dotenv
+
+# This will find the .env at the project root even if 
+# you run the script from inside the scripts/ folder.
+load_dotenv(find_dotenv())
 
 # --- Configuration ---
 # You'll set these via Terraform or Environment Variables
 PROJECT_ID = os.getenv("GCP_PROJECT_ID")
 BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
-OPENAQ_API_KEY = os.getenv("OPENAQ_API_KEY") # Get yours at explore.openaq.org
+OPENAQ_API_KEY = os.getenv("OPENAQ_API_KEY") 
 BASE_URL = "https://api.openaq.org/v3/locations"
 
 def fetch_openaq_data(country_code="BR"):
@@ -31,21 +36,32 @@ def fetch_openaq_data(country_code="BR"):
     else:
         raise Exception(f"API Error: {response.status_code} - {response.text}")
 
-def upload_to_gcs(data, destination_blob_name):
+def upload_to_gcs(data, filename):
     """Uploads a dictionary as a JSON file to GCS."""
-    storage_client = storage.Client()
-    bucket = storage_client.bucket(BUCKET_NAME)
-    blob = bucket.blob(destination_blob_name)
+    # Get the path from your .env
+    credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    
+    # Initialize the client with the explicit file path
+    if credentials_path:
+        storage_client = storage.Client.from_service_account_json(credentials_path)
+    else:
+        # Fallback for when you move to the cloud (Kestra/GCP)
+        storage_client = storage.Client()
+        
+    bucket_name = os.getenv("GCS_BUCKET_NAME")
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(filename)
 
     blob.upload_from_string(
         data=json.dumps(data),
         content_type='application/json'
     )
-    print(f"Successfully uploaded to gs://{BUCKET_NAME}/{destination_blob_name}")
+    print(f"Successfully uploaded to gs://{BUCKET_NAME}/filename")
 
 if __name__ == "__main__":
-    # 1. Fetch data
-    raw_data = fetch_openaq_data(country_code="BR")
+    # 1. Fetch data    
+    BR_COUNTRY_ID = 28
+    raw_data = fetch_openaq_data(country_code=BR_COUNTRY_ID)
     
     # 2. Create a unique filename with a timestamp
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
