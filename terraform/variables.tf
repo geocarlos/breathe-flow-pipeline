@@ -1,24 +1,35 @@
 variable "project_id" {
-  description = "Your GCP Project ID"
+  description = "GCP Project ID"
   type        = string
+  default     = "data-engineering-zoomcamp2026"
 }
 
 variable "region" {
   description = "Region for GCP resources"
-  default     = "us-central1"
-}
-
-variable "storage_class" {
-  description = "Storage class type for your bucket"
-  default     = "STANDARD"
-}
-
-variable "gcs_bucket_name" {
-  description = "Globally unique name for your Data Lake bucket"
   type        = string
+  default     = "us-east1" # Adjust if you prefer a different region
+}
+
+variable "location" {
+  description = "Project Location"
+  type        = string
+  default     = "US"
 }
 
 variable "bq_dataset_name" {
-  description = "BigQuery Dataset name where dbt will work"
-  default     = "ecommerce_data_all"
+  description = "My BigQuery Dataset Name"
+  type        = string
+  default     = "raw_air_quality"
+}
+
+variable "gcs_bucket_name" {
+  description = "My Storage Bucket Name"
+  type        = string
+  default     = "breathe-flow-pipeline-storage"
+}
+
+variable "gcs_storage_class" {
+  description = "Bucket Storage Class"
+  type        = string
+  default     = "STANDARD"
 }

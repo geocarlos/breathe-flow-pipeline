@@ -2,7 +2,7 @@
 resource "google_storage_bucket" "data-lake-bucket" {
   name                        = var.gcs_bucket_name
   location                    = var.region
-  storage_class               = var.storage_class
+  storage_class               = var.gcs_storage_class
   uniform_bucket_level_access = true
 
   versioning {
@@ -27,7 +27,7 @@ resource "google_bigquery_dataset" "dataset" {
   project    = var.project_id
   location   = var.region
 
-  description = "Dataset for the E-Commerce Zoomcamp Project"
+  description = "Dataset for the Breathe Flow Pipeline Zoomcamp Project"
 }
 
 # External Table: Bridges GCS JSON files to BigQuery
