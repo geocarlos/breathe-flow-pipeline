@@ -19,7 +19,7 @@ variable "location" {
 variable "bq_dataset_name" {
   description = "My BigQuery Dataset Name"
   type        = string
-  default     = "raw_air_quality"
+  default     = "breathe-flow-pipeline"
 }
 
 variable "gcs_bucket_name" {
