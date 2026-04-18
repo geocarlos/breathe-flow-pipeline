@@ -78,6 +78,32 @@ docker compose exec ingest python ingest_openaq.py
 Notes:
 - The PoC mounts `./scripts` into Kestra so the Bash task can call the Python script.
 - For production, create a dedicated service account, store credentials in Secret Manager, and avoid committing `google_credentials.json`.
+For a low-cost production-ready demo, prefer Cloud Run + Cloud Scheduler (no cluster needed).
+
+Cloud Run + Scheduler (PoC)
+:
+	The repository includes Terraform scaffolding to create a Cloud Run service and a Cloud Scheduler job that POSTs to the service on a cron schedule. This path is low-cost and suitable for the capstone demo.
+
+Files:
+- `terraform/cloud_run_scheduler.tf` — Cloud Run + Scheduler resources (disabled by default).
+- `cloudbuild.yaml` — Cloud Build config to build and push the ingestion image to GCR.
+
+To enable and deploy (high-level):
+
+```bash
+cd terraform
+# Enable creation in terraform vars
+terraform apply -var 'create_cloud_run=true' -var 'cloud_run_image=gcr.io/<PROJECT_ID>/openaq-ingest:latest'
+# Or build and push the image via Cloud Build first:
+gcloud builds submit --tag gcr.io/<PROJECT_ID>/openaq-ingest:latest
+
+# Once the Cloud Run service is created, you can test the endpoint:
+gcloud run services invoke openaq-ingest --region ${REGION} --data='{}'
+```
+
+Security notes:
+- The scheduler uses a service account to authenticate when calling Cloud Run; the Terraform scaffold creates service accounts for the Cloud Run runtime and Scheduler invoking role.
+- Keep service account keys out of the repo; prefer IAM roles and deploy-time service account assignment.
 
 Optional SA key generation (Terraform)
 :
