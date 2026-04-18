@@ -1,3 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.env
+.venv/
+venv/
+.pytest_cache/
+
+# Terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# GCP credentials
+google_credentials.json
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
 # Terraform
 .terraform/
 *.tfstate
