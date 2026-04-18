@@ -33,3 +33,17 @@ variable "gcs_storage_class" {
   type        = string
   default     = "STANDARD"
 }
+
+# Kestra service account configuration
+variable "kestra_sa_account_id" {
+  description = "Service account account_id for Kestra"
+  type        = string
+  default     = "kestra-sa"
+}
+
+# Optionally create a long-lived service account key for local PoC (use with caution)
+variable "create_kestra_sa_key" {
+  description = "Whether to create a long-lived service account key for the Kestra SA (for local PoC only)."
+  type        = bool
+  default     = false
+}

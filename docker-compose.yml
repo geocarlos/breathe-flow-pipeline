@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  kestra:
+    image: kestrahq/kestra:latest
+    container_name: kestra
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./kestra/flows:/usr/share/kestra/flows
+      - ./scripts:/opt/app
+    environment:
+      - KESTRA_RUNNERS__LOCAL__ENABLED=true
+
+  kestra-ui:
+    image: kestrahq/kestra-ui:latest
+    container_name: kestra-ui
+    ports:
+      - "8081:8080"
+    environment:
+      - KESTRA_API_URL=http://kestra:8080
+    depends_on:
+      - kestra
+
+  ingest:
+    build:
+      context: .
+      dockerfile: Dockerfile.ingest
+    container_name: breathe-flow-ingest
+    environment:
+      - OPENAQ_API_KEY
+      - GCP_PROJECT_ID
+      - GCS_BUCKET_NAME
+      - GOOGLE_APPLICATION_CREDENTIALS=/opt/app/google_credentials.json
+    volumes:
+      - ./google_credentials.json:/opt/app/google_credentials.json:ro
+    command: ["tail", "-f", "/dev/null"]

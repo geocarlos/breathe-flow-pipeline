@@ -1,0 +1,6 @@
+FROM python:3.12-slim
+WORKDIR /opt/app
+COPY scripts/ ./scripts/
+COPY scripts/ingest_openaq.py .
+RUN pip install --no-cache-dir google-cloud-storage python-dotenv requests
+ENTRYPOINT ["python","ingest_openaq.py"]

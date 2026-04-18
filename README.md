@@ -59,5 +59,38 @@ The final dashboard provides insights into:
 - [ ] Advanced dbt Modeling (Incremental loads).
 - [ ] Streamlit Dashboard Deployment.
 
+## Kestra PoC (local)
+A minimal PoC is scaffolded to run Kestra locally and execute the ingestion script.
+
+- Flow: [kestra/flows/openaq_ingestion_flow.yml](kestra/flows/openaq_ingestion_flow.yml)
+- Ingest image Dockerfile: [Dockerfile.ingest](Dockerfile.ingest)
+- Compose: [docker-compose.yml](docker-compose.yml)
+
+Quick start (local):
+```bash
+# Ensure you DO NOT commit credentials. Provide them via env or mount.
+docker compose up -d
+# Kestra UI: http://localhost:8081  (API server at http://localhost:8080)
+# The `ingest` container is left running for ad-hoc runs; to run it manually:
+docker compose exec ingest python ingest_openaq.py
+```
+
+Notes:
+- The PoC mounts `./scripts` into Kestra so the Bash task can call the Python script.
+- For production, create a dedicated service account, store credentials in Secret Manager, and avoid committing `google_credentials.json`.
+
+Optional SA key generation (Terraform)
+:
+	The Terraform module now includes an optional toggle to create a long-lived service account key for the Kestra service account. This is intended only for local PoC usage. To enable, run Terraform with the variable:
+
+```bash
+terraform apply -var 'create_kestra_sa_key=true'
+```
+
+Warnings:
+- Long-lived JSON keys are sensitive and will be stored in Terraform state. Prefer Workload Identity (GKE) or instance service account bindings for production.
+- If you enable key creation, download the key securely and delete it from the Terraform state if you don't need it persisted.
+
+
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
