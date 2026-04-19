@@ -1,36 +1,46 @@
 version: '3.8'
+
+volumes:
+  postgres-data:
+  kestra-data:
+
 services:
-  kestra:
-    image: kestrahq/kestra:latest
-    container_name: kestra
-    ports:
-      - "8080:8080"
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: kestra_password
     volumes:
-      - ./kestra/flows:/usr/share/kestra/flows
-      - ./scripts:/opt/app
-    environment:
-      - KESTRA_RUNNERS__LOCAL__ENABLED=true
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kestra"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  kestra-ui:
-    image: kestrahq/kestra-ui:latest
-    container_name: kestra-ui
-    ports:
-      - "8081:8080"
-    environment:
-      - KESTRA_API_URL=http://kestra:8080
-    depends_on:
-      - kestra
-
-  ingest:
+  kestra:
     build:
       context: .
-      dockerfile: Dockerfile.ingest
-    container_name: breathe-flow-ingest
-    environment:
-      - OPENAQ_API_KEY
-      - GCP_PROJECT_ID
-      - GCS_BUCKET_NAME
-      - GOOGLE_APPLICATION_CREDENTIALS=/opt/app/google_credentials.json
+      dockerfile: Dockerfile.kestra
+    container_name: kestra
+    command: server standalone
     volumes:
+      - kestra-data:/app/storage
+      - ./scripts:/opt/app
       - ./google_credentials.json:/opt/app/google_credentials.json:ro
-    command: ["tail", "-f", "/dev/null"]
+    environment:
+      KESTRA_DATASOURCES_POSTGRES_URL: "jdbc:postgresql://postgres:5432/kestra"
+      KESTRA_DATASOURCES_POSTGRES_USERNAME: kestra
+      KESTRA_DATASOURCES_POSTGRES_PASSWORD: kestra_password
+      KESTRA_SERVER_BASICAUTH_ENABLED: "false"
+      OPENAQ_API_KEY: ${OPENAQ_API_KEY}
+      GCP_PROJECT_ID: ${GCP_PROJECT_ID}
+      GCS_BUCKET_NAME: ${GCS_BUCKET_NAME}
+      GOOGLE_APPLICATION_CREDENTIALS: /opt/app/google_credentials.json
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_healthy

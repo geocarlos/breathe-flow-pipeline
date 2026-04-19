@@ -1,12 +1,16 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/openaq-ingest:$SHORT_SHA', '.']
+    args: ['build', '-f', 'Dockerfile.ingest', '-t', 'gcr.io/$PROJECT_ID/openaq-ingest:$SHORT_SHA', '-t', 'gcr.io/$PROJECT_ID/openaq-ingest:latest', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/openaq-ingest:$SHORT_SHA']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/openaq-ingest:latest']
+
 images:
   - 'gcr.io/$PROJECT_ID/openaq-ingest:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/openaq-ingest:latest'
 
 options:
   machineType: 'E2_HIGHCPU_8'

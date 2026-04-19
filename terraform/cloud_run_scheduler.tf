@@ -53,8 +53,9 @@ resource "google_cloud_scheduler_job" "ingest_job" {
     uri = "${google_cloud_run_service.ingest_service[0].status[0].url}"
     http_method = "POST"
 
-    oauth_token {
+    oidc_token {
       service_account_email = google_service_account.scheduler_sa[0].email
+      audience = google_cloud_run_service.ingest_service[0].status[0].url
     }
   }
 
