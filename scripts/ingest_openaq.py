@@ -52,12 +52,15 @@ def upload_ndjson_to_gcs(records: list[dict], filename: str) -> None:
     print(f"Uploaded {len(records)} records → gs://{BUCKET_NAME}/{filename}")
 
 
-def run_ingest(api_key: str | None = None) -> dict:
+def run_ingest(api_key: str | None = None, bucket_name: str | None = None) -> dict:
     """Run the ingestion flow and return a summary dict."""
     # allow caller to override the API key (useful for HTTP-triggered runs)
     global OPENAQ_API_KEY
     if api_key:
         OPENAQ_API_KEY = api_key
+    if bucket_name:
+        global BUCKET_NAME
+        BUCKET_NAME = bucket_name
 
     ingested_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     all_records: list[dict] = []
@@ -88,9 +91,12 @@ def run_endpoint():
     """
     try:
         api_key = None
+        bucket_name = None
         if "X-OPENAQ-API-KEY" in request.headers:
             api_key = request.headers.get("X-OPENAQ-API-KEY")
-        result = run_ingest(api_key=api_key)
+        if "X-GCS-BUCKET" in request.headers:
+            bucket_name = request.headers.get("X-GCS-BUCKET")
+        result = run_ingest(api_key=api_key, bucket_name=bucket_name)
         return jsonify({"status": "ok", "filename": result["filename"], "records": result["records"]}), 200
     except Exception as exc:
         return jsonify({"status": "error", "error": str(exc)}), 500
