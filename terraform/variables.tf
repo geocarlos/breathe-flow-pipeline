@@ -136,3 +136,34 @@ variable "openaq_api_key" {
   sensitive   = true
 }
 
+# Optional Kestra VM (small Compute Engine instance) for hosting Kestra UI via Docker Compose
+variable "create_kestra_vm" {
+  description = "Whether to create a small Compute Engine VM to host Kestra (optional, low-cost demo)."
+  type        = bool
+  default     = false
+}
+
+variable "kestra_vm_name" {
+  description = "Name for the Kestra VM instance"
+  type        = string
+  default     = "kestra-vm"
+}
+
+variable "kestra_vm_zone" {
+  description = "Zone for the Kestra VM"
+  type        = string
+  default     = "us-east1-b"
+}
+
+variable "kestra_vm_machine_type" {
+  description = "Machine type for the Kestra VM"
+  type        = string
+  default     = "e2-small"
+}
+
+variable "kestra_repo_url" {
+  description = "Optional git repo URL to clone on the VM (if empty, VM will not auto-clone)."
+  type        = string
+  default     = ""
+}
+
