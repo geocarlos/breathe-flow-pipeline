@@ -116,3 +116,23 @@ variable "scheduler_cron" {
   default     = "0 * * * *"
 }
 
+# Secret Manager for OpenAQ API key
+variable "create_openaq_secret" {
+  description = "Whether to create a Secret Manager secret for the OpenAQ API key"
+  type        = bool
+  default     = false
+}
+
+variable "openaq_secret_name" {
+  description = "Secret name to store the OpenAQ API key"
+  type        = string
+  default     = "openaq-api-key"
+}
+
+variable "openaq_api_key" {
+  description = "(Optional) OpenAQ API key value to populate as a secret version. Leave empty to create secret without version."
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+

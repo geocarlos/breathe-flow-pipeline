@@ -42,6 +42,16 @@ resource "google_cloud_run_service_iam_member" "invoker" {
   member   = "serviceAccount:${google_service_account.scheduler_sa[0].email}"
 }
 
+# Grant Kestra service account permission to invoke Cloud Run
+resource "google_cloud_run_service_iam_member" "kestra_invoker" {
+  count    = var.create_cloud_run ? 1 : 0
+  location = google_cloud_run_service.ingest_service[0].location
+  project  = var.project_id
+  service  = google_cloud_run_service.ingest_service[0].name
+  role     = "roles/run.invoker"
+  member   = "serviceAccount:${google_service_account.kestra.email}"
+}
+
 # Cloud Scheduler job to POST to Cloud Run using OAuth token
 resource "google_cloud_scheduler_job" "ingest_job" {
   count    = var.create_cloud_run ? 1 : 0

@@ -4,17 +4,33 @@ description: "Kestra flow to ingest OpenAQ air quality station snapshots into GC
 
 tasks:
   - id: run-ingest
-    type: io.kestra.plugin.scripts.shell.Commands
-    runner: PROCESS
-    commands:
-      - |
-        OPENAQ_KEY=$(python3 /opt/app/get_secret.py)
-        TOKEN=$(python3 /opt/app/get_id_token.py https://openaq-ingest-194296449561.us-east1.run.app)
-        curl -s -H "Authorization: Bearer $TOKEN" -H "X-OPENAQ-API-KEY: $OPENAQ_KEY" -X POST https://openaq-ingest-194296449561.us-east1.run.app/run -o /tmp/ingest_resp.json || true
-        cat /tmp/ingest_resp.json || true
+    type: io.kestra.plugin.http.tasks.Post
+    uri: "https://openaq-ingest-194296449561.us-east1.run.app/run"
+    headers:
+      Authorization: "Bearer {{ outputs.get_id_token.token }}"
+      X-OPENAQ-API-KEY: "{{ outputs.get_secret.value }}"
+    body: "{}"
+    connectTimeout: 10000
+    readTimeout: 600000
+    retries: 3
+    retryDelay: "PT10S"
+    outputs:
+      - key: response
+        value: "{{ body }}"
     env:
       GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
       GCS_BUCKET_NAME: "{{ envs.GCS_BUCKET_NAME }}"
+
+outputs:
+  - id: get_secret
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - python3 /opt/app/get_secret.py
+
+  - id: get_id_token
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - python3 /opt/app/get_id_token.py https://openaq-ingest-194296449561.us-east1.run.app
 
 triggers:
   - id: hourly
