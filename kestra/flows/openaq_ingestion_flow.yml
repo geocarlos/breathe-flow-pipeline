@@ -8,7 +8,9 @@ tasks:
     runner: PROCESS
     commands:
       - |
-        curl -s -X POST https://openaq-ingest-194296449561.us-east1.run.app/run -o /tmp/ingest_resp.json || true
+        OPENAQ_KEY=$(python3 /opt/app/get_secret.py)
+        TOKEN=$(python3 /opt/app/get_id_token.py https://openaq-ingest-194296449561.us-east1.run.app)
+        curl -s -H "Authorization: Bearer $TOKEN" -H "X-OPENAQ-API-KEY: $OPENAQ_KEY" -X POST https://openaq-ingest-194296449561.us-east1.run.app/run -o /tmp/ingest_resp.json || true
         cat /tmp/ingest_resp.json || true
     env:
       GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
