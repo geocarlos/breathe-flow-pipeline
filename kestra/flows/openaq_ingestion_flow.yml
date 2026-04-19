@@ -1,21 +1,21 @@
 id: openaq_ingestion
 namespace: breatheflow
-revision: 1
-description: "Simple Kestra flow to run the OpenAQ ingestion script (PoC)."
+description: "Kestra flow to ingest OpenAQ air quality station snapshots into GCS."
+
 tasks:
   - id: run-ingest
-    type: io.kestra.core.tasks.scripts.Bash
-    command: |
-      set -e
-      echo "Starting OpenAQ ingestion"
-      python /opt/app/ingest_openaq.py
-    environment:
-      OPENAQ_API_KEY: ${OPENAQ_API_KEY}
-      GCP_PROJECT_ID: ${GCP_PROJECT_ID}
-      GCS_BUCKET_NAME: ${GCS_BUCKET_NAME}
-      GOOGLE_APPLICATION_CREDENTIALS: /opt/app/google_credentials.json
-schedules:
+    type: io.kestra.plugin.scripts.shell.Commands
+    runner: PROCESS
+    commands:
+      - |
+        curl -s -X POST https://openaq-ingest-194296449561.us-east1.run.app/run -o /tmp/ingest_resp.json || true
+        cat /tmp/ingest_resp.json || true
+    env:
+      GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
+      GCS_BUCKET_NAME: "{{ envs.GCS_BUCKET_NAME }}"
+
+triggers:
   - id: hourly
-    type: io.kestra.core.models.tasks.types.Schedule
+    type: io.kestra.core.models.triggers.types.Schedule
     cron: "0 * * * *"
-    timezone: "UTC"
+    timezone: UTC
