@@ -29,6 +29,7 @@ resource "google_container_cluster" "kestra_cluster" {
 
 # Bind the Kestra GCP service account to the Kubernetes service account via Workload Identity
 resource "google_service_account_iam_member" "workload_identity_binding" {
+  count              = var.create_gke_cluster ? 1 : 0
   service_account_id = google_service_account.kestra.name
   role               = "roles/iam.workloadIdentityUser"
   member             = "serviceAccount:${local.workload_pool}[${var.k8s_namespace}/${var.k8s_service_account}]"
