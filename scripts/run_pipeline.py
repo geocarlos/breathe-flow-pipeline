@@ -88,6 +88,16 @@ def step_dbt(cmds: list[str]) -> None:
             )
 
 
+def step_dashboard() -> None:
+    dashboard_app = REPO_ROOT / "dashboard" / "app.py"
+    print(f"[pipeline] Opening dashboard at http://localhost:8501 …")
+    subprocess.run(
+        ["uv", "run", "streamlit", "run", str(dashboard_app),
+         "--server.port=8501", "--server.address=0.0.0.0"],
+        check=True,
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Run the full breathe-flow pipeline locally."
@@ -95,6 +105,8 @@ def main() -> None:
     parser.add_argument("--skip-ingest", action="store_true", help="Skip ingestion.")
     parser.add_argument("--skip-load", action="store_true", help="Skip GCS→BQ load.")
     parser.add_argument("--skip-dbt", action="store_true", help="Skip dbt transforms.")
+    parser.add_argument("--no-dashboard", action="store_true",
+                        help="Do not launch the Streamlit dashboard after transforms.")
     parser.add_argument(
         "--dbt-cmd",
         default="run",
@@ -103,21 +115,33 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    total = sum([not args.skip_ingest, not args.skip_load, not args.skip_dbt,
+                 not args.no_dashboard])
+    step = 0
+
     if not args.skip_ingest:
-        _banner("Step 1/3 — Ingest: OpenAQ API → GCS")
+        step += 1
+        _banner(f"Step {step}/{total} — Ingest: OpenAQ API → GCS")
         step_ingest()
         print("[pipeline] ✓ Ingest complete")
 
     if not args.skip_load:
-        _banner("Step 2/3 — Load: GCS → BigQuery")
+        step += 1
+        _banner(f"Step {step}/{total} — Load: GCS → BigQuery")
         step_load()
         print("[pipeline] ✓ Load complete")
 
     if not args.skip_dbt:
+        step += 1
         dbt_cmds = args.dbt_cmd.split()
-        _banner(f"Step 3/3 — Transform: dbt {' + '.join(dbt_cmds)}")
+        _banner(f"Step {step}/{total} — Transform: dbt {' + '.join(dbt_cmds)}")
         step_dbt(dbt_cmds)
         print("[pipeline] ✓ dbt complete")
+
+    if not args.no_dashboard:
+        step += 1
+        _banner(f"Step {step}/{total} — Dashboard: Streamlit")
+        step_dashboard()
 
     print("\n[pipeline] All steps complete ✓")
 
