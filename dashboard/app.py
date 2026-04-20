@@ -16,7 +16,11 @@ import os
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from dotenv import load_dotenv
 from google.cloud import bigquery
+
+# Load .env for local development (no-op in production where env vars are injected)
+load_dotenv()
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
