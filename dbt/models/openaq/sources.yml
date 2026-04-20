@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: openaq
+    description: "Raw OpenAQ artifacts loaded by ingestion"
+    tables:
+      - name: raw
+        description: "Raw snapshots loaded from ingestion (openaq_raw)"
+        columns:
+          - name: _ingested_at
+            description: "Ingestion timestamp"
+          - name: _country_code
+            description: "Country code added at ingest"

@@ -22,6 +22,8 @@ tasks:
         sleep 15
         echo "Checking BigQuery for loaded rows..."
         python3 /opt/app/check_bq_load.py --project "${GCP_PROJECT_ID}" --dataset "${BQ_DATASET}" --table "${BQ_TABLE}" --min-rows 1
+        echo "Running dbt transformations..."
+        /opt/app/run_dbt.sh run
     env:
       GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
       BQ_DATASET: "{{ envs.BQ_DATASET }}"
