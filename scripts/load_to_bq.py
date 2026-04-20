@@ -54,6 +54,12 @@ def load_uris_to_bigquery(
     else:
         client = bigquery.Client(project=project)
 
+    # Create dataset if it doesn't exist
+    bq_dataset = bigquery.Dataset(f"{project}.{dataset}")
+    bq_dataset.location = "US"
+    client.create_dataset(bq_dataset, exists_ok=True)
+    print(f"Dataset {project}.{dataset} ready.")
+
     table_ref = f"{project}.{dataset}.{table}"
     job_config = bigquery.LoadJobConfig(
         source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
