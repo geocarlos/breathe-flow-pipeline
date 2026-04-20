@@ -21,7 +21,10 @@ import os
 import sys
 from datetime import datetime, timezone
 
+from dotenv import load_dotenv
 from google.cloud import bigquery, storage
+
+load_dotenv()
 
 
 def get_gcs_uris_for_date(
