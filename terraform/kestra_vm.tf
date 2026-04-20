@@ -2,13 +2,13 @@
 Optional VM to host Kestra for demos. Controlled by var.create_kestra_vm.
 The instance runs with the existing `kestra` service account created elsewhere
 in the Terraform config so it inherits the IAM roles you assigned to that SA.
-*/
 
-resource "google_compute_address" "kestra_ip" {
-  count = var.create_kestra_vm ? 1 : 0
-  name  = "${var.kestra_vm_name}-ip"
-  region = var.region
-}
+Note: I intentionally do not preallocate a regional static IP here because
+that caused errors when creating the VM in a different region than the
+reserved address. The VM will receive an ephemeral external IP via
+`access_config` which is sufficient for a demo. If you require a static
+regional IP, create one per-region and supply it via a variable.
+*/
 
 resource "google_compute_instance" "kestra_vm" {
   count        = var.create_kestra_vm ? 1 : 0
@@ -26,9 +26,7 @@ resource "google_compute_instance" "kestra_vm" {
 
   network_interface {
     network = "default"
-    access_config {
-      nat_ip = try(google_compute_address.kestra_ip[0].address, null)
-    }
+    access_config {}
   }
 
   metadata_startup_script = <<-EOF
@@ -71,6 +69,6 @@ resource "google_compute_firewall" "kestra_ui" {
 }
 
 output "kestra_vm_external_ip" {
-  value = try(google_compute_address.kestra_ip[0].address, google_compute_instance.kestra_vm[0].network_interface[0].access_config[0].nat_ip)
+  value       = google_compute_instance.kestra_vm[0].network_interface[0].access_config[0].nat_ip
   description = "External IP address for the Kestra VM (if created)"
 }

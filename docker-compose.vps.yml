@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
+  # Local Postgres (optional). For production prefer Cloud SQL and remove this service.
   kestra_postgres:
     image: postgres:16-alpine
-    container_name: kestra_postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-kestra}
       POSTGRES_USER: ${POSTGRES_USER:-kestra}
@@ -26,8 +26,8 @@ services:
       - ./scripts:/opt/app
       - ./google_credentials.json:/opt/app/google_credentials.json:ro
     environment:
-      # JVM tuning for low-memory VM
-      JAVA_OPTS: "-Xmx512m -Xms256m"
+      # Tune heap to your VPS RAM. Example here for small VPS (adjust to >=4GB if available).
+      JAVA_OPTS: "-Xmx1024m -Xms512m"
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
@@ -37,6 +37,9 @@ services:
             password: ${POSTGRES_PASSWORD:-kestra_password}
         kestra:
           server:
+            # UI basic auth credentials are read from environment variables.
+            # Provide them via a .env file or the environment. Defaults kept for
+            # convenience but should be overridden in production.
             basicAuth:
               username: ${KESTRA_BASIC_AUTH_USERNAME:-kestra@letterscode.com}
               password: ${KESTRA_BASIC_AUTH_PASSWORD:-changeme}
@@ -51,21 +54,18 @@ services:
           tasks:
             tmpDir:
               path: /tmp/kestra-wd/tmp
-        url: http://localhost:8080/
+        url: http://0.0.0.0:8080/
     ports:
       - "8080:8080"
       - "8081:8081"
     depends_on:
       - kestra_postgres
-    # Docker Compose memory hint (may be ignored outside swarm)
-    deploy:
-      resources:
-        limits:
-          memory: 800M
-    mem_limit: 800m
+    restart: unless-stopped
 
 volumes:
   kestra_postgres_data:
-    driver: local
   kestra_data:
-    driver: local
+
+# Notes:
+# - To use Cloud SQL, remove the `kestra_postgres` service and set datasources.postgres.url to your Cloud SQL host.
+# - Adjust `JAVA_OPTS` to match VM memory. For 2GB total, reduce to -Xmx512m; for 4GB, use -Xmx1536m.

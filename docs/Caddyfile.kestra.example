@@ -1,0 +1,9 @@
+kestra.letterscode.com {
+    reverse_proxy 127.0.0.1:8080
+    encode gzip
+    tls you@example.com
+}
+
+# Caddy automatically obtains TLS certificates for the hostname above.
+# To run: install Caddy and place this file at /etc/caddy/Caddyfile, then
+# `sudo systemctl restart caddy`.
