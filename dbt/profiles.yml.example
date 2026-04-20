@@ -1,0 +1,12 @@
+# Example `profiles.yml` for BigQuery using a service account key file.
+breathe_flow_profile:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account-json
+      project: "${GCP_PROJECT_ID}"
+      dataset: "${BQ_DATASET}"
+      keyfile: "/root/.gcp/service-account.json"
+      threads: 1
+      timeout_seconds: 300
