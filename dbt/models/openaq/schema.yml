@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: stg_openaq_raw
+    description: >
+      Incremental staging model for OpenAQ location snapshots.
+      Each row is one station from a single ingestion run, deduped on
+      (station_id, ingested_at) via a merged unique key.
+    columns:
+      - name: snapshot_id
+        description: "MD5 hash of station_id + ingested_at — surrogate unique key."
+        tests:
+          - unique
+          - not_null
+      - name: station_id
+        description: "OpenAQ numeric station ID."
+        tests:
+          - not_null
+      - name: country_code
+        description: "ISO country code added at ingestion time."
+        tests:
+          - not_null
+      - name: latitude
+        description: "Station latitude."
+      - name: longitude
+        description: "Station longitude."
+      - name: last_measured_at
+        description: "UTC timestamp of the station's most recent sensor measurement."
+      - name: sensor_count
+        description: "Number of sensors active at this station during this snapshot."
+      - name: ingested_at
+        description: "UTC timestamp when the ingestion run fetched this record."
+        tests:
+          - not_null
+      - name: ingested_date
+        description: "Date partition derived from ingested_at."
+        tests:
+          - not_null
+
+  - name: fct_station_coverage
+    description: >
+      Daily count of active air quality monitoring stations per country.
+      Incremental model that aggregates stg_openaq_raw by (country, ingestion date).
+      Useful for tracking coverage trends and data quality over time.
+    columns:
+      - name: coverage_id
+        description: "MD5 hash of country_code + snapshot_date — surrogate unique key."
+        tests:
+          - unique
+          - not_null
+      - name: country_code
+        description: "ISO country code."
+        tests:
+          - not_null
+      - name: country_name
+        description: "Full country name from OpenAQ."
+      - name: snapshot_date
+        description: "Date of the ingestion snapshot (partition key)."
+        tests:
+          - not_null
+      - name: active_stations
+        description: "Number of distinct active stations for this country on this date."
+        tests:
+          - not_null
+      - name: avg_sensors_per_station
+        description: "Average number of sensors per station."
+      - name: monitor_stations
+        description: "Count of stationary reference-grade monitoring stations."
+      - name: mobile_stations
+        description: "Count of mobile monitoring stations."
+      - name: oldest_last_measurement
+        description: "Earliest 'last measured at' timestamp across all stations in this group."
+      - name: newest_last_measurement
+        description: "Latest 'last measured at' timestamp across all stations in this group."

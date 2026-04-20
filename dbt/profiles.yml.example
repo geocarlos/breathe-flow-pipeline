@@ -1,12 +1,23 @@
 # Example `profiles.yml` for BigQuery using a service account key file.
+# Copy this file to dbt/profiles.yml and fill in your project/dataset values.
 breathe_flow_profile:
   target: dev
   outputs:
+    # Local development — uses a service account JSON key
     dev:
       type: bigquery
-      method: service-account-json
+      method: service-account
+      project: "${GCP_PROJECT_ID}"
+      dataset: "${BQ_DATASET}"
+      keyfile: "${GOOGLE_APPLICATION_CREDENTIALS}"
+      threads: 1
+      timeout_seconds: 300
+    # Production (Kestra container) — keyfile path is fixed by the volume mount
+    prod:
+      type: bigquery
+      method: service-account
       project: "${GCP_PROJECT_ID}"
       dataset: "${BQ_DATASET}"
       keyfile: "/root/.gcp/service-account.json"
-      threads: 1
+      threads: 4
       timeout_seconds: 300

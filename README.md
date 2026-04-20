@@ -56,13 +56,13 @@ The final dashboard provides insights into:
 - [X] Initial Infrastructure with Terraform.
 - [X] API Ingestion Script (Python).
 - [X] Kestra Workflow Automation.
-- [ ] Advanced dbt Modeling (Incremental loads).
+- [X] Advanced dbt Modeling (Incremental loads).
 - [ ] Streamlit Dashboard Deployment.
 
 ## Kestra PoC (local)
 A minimal PoC is scaffolded to run Kestra locally and execute the ingestion script.
 
-- Flow: [kestra/flows/openaq_ingestion_flow.yml](kestra/flows/openaq_ingestion_flow.yml)
+- Flow: [kestra/flows/breatheflow_openaq_to_bigquery.yml](kestra/flows/breatheflow_openaq_to_bigquery.yml)
 - Ingest image Dockerfile: [Dockerfile.ingest](Dockerfile.ingest)
 - Compose: [docker-compose.yml](docker-compose.yml)
 

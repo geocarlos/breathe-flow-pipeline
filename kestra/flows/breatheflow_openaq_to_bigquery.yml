@@ -1,9 +1,9 @@
 id: openaq_to_bigquery
 namespace: breatheflow
-description: "Trigger Cloud Run ingestion and verify BigQuery load (uses scripts mounted into /opt/app)."
+description: "Ingest OpenAQ station snapshots, load to BigQuery, and run dbt transformations."
 
 tasks:
-  - id: run-ingest-and-verify
+  - id: run-ingest
     type: io.kestra.plugin.scripts.shell.Commands
     commands:
       - |
@@ -18,14 +18,39 @@ tasks:
           -H "X-OPENAQ-API-KEY: ${KEY}" \
           -H "Content-Type: application/json" \
           -d '{}' || true
-        echo "Waiting briefly for ingestion to land..."
+        echo "Waiting for ingestion to land in GCS..."
         sleep 15
         echo "Checking BigQuery for loaded rows..."
-        python3 /opt/app/check_bq_load.py --project "${GCP_PROJECT_ID}" --dataset "${BQ_DATASET}" --table "${BQ_TABLE}" --min-rows 1
+        python3 /opt/app/check_bq_load.py \
+          --project "${GCP_PROJECT_ID}" \
+          --dataset "${BQ_SOURCE_DATASET}" \
+          --table "${BQ_TABLE}" \
+          --min-rows 1
+    env:
+      GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
+      BQ_SOURCE_DATASET: "{{ envs.BQ_SOURCE_DATASET }}"
+      BQ_TABLE: "{{ envs.BQ_TABLE }}"
+
+  - id: run-dbt
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - |
+        set -euo pipefail
+        echo "Running dbt models..."
+        dbt run \
+          --project-dir /opt/app/dbt \
+          --profiles-dir /opt/app/.dbt \
+          --target prod
+        echo "Running dbt tests..."
+        dbt test \
+          --project-dir /opt/app/dbt \
+          --profiles-dir /opt/app/.dbt \
+          --target prod
     env:
       GCP_PROJECT_ID: "{{ envs.GCP_PROJECT_ID }}"
       BQ_DATASET: "{{ envs.BQ_DATASET }}"
-      BQ_TABLE: "{{ envs.BQ_TABLE }}"
+      BQ_SOURCE_DATASET: "{{ envs.BQ_SOURCE_DATASET }}"
+      GOOGLE_APPLICATION_CREDENTIALS: "/root/.gcp/service-account.json"
 
 triggers:
   - id: hourly

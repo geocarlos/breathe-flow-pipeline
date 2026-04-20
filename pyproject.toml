@@ -9,4 +9,5 @@ dependencies = [
     "google-cloud-bigquery>=3.11.0",
     "python-dotenv>=1.2.2",
     "requests>=2.33.1",
+    "flask>=3.0.0",
 ]

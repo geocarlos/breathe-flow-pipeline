@@ -13,4 +13,16 @@ clean-targets: ["target"]
 
 vars:
   project: "{{ env_var('GCP_PROJECT_ID', '') }}"
-  dataset: "{{ env_var('BQ_DATASET', 'breathe-flow-pipeline') }}"
+  # dbt output dataset (staging + mart tables land here)
+  dataset: "{{ env_var('BQ_DATASET', 'breathe_flow') }}"
+  # source raw data dataset (BigQuery table loaded from GCS)
+  source_dataset: "{{ env_var('BQ_SOURCE_DATASET', 'openaq') }}"
+
+models:
+  breathe_flow_dbt:
+    openaq:
+      +materialized: view
+      stg_openaq_raw:
+        +materialized: incremental
+      fct_station_coverage:
+        +materialized: incremental
