@@ -4,10 +4,9 @@ set -euo pipefail
 # Expects the dbt project directory and profiles dir to be mounted or accessible.
 # Usage: run_dbt.sh [dbt-args]
 
-DBT_IMAGE="${DBT_IMAGE:-dbt-labs/dbt:1.4.4}
-"
-DBT_PROJECT_DIR="${DBT_PROJECT_DIR:-$(pwd)/dbt_project}"
-PROFILES_DIR="${PROFILES_DIR:-$(pwd)/.dbt}"
+DBT_IMAGE="${DBT_IMAGE:-dbt-labs/dbt:1.4.4}"
+DBT_PROJECT_DIR="${DBT_PROJECT_DIR:-/opt/app/dbt}"
+PROFILES_DIR="${PROFILES_DIR:-/opt/app/.dbt}"
 
 echo "DBT image: ${DBT_IMAGE}"
 echo "DBT project dir: ${DBT_PROJECT_DIR}"

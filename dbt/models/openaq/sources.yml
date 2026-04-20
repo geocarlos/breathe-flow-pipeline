@@ -2,12 +2,16 @@ version: 2
 
 sources:
   - name: openaq
-    description: "Raw OpenAQ artifacts loaded by ingestion"
+    description: "Raw OpenAQ station snapshots loaded from GCS via BigQuery load job."
+    database: "{{ var('project') }}"
+    schema: "{{ var('source_dataset') }}"
     tables:
       - name: raw
-        description: "Raw snapshots loaded from ingestion (openaq_raw)"
+        description: "One row per station per ingestion run (NDJSON loaded from GCS)."
         columns:
+          - name: id
+            description: "OpenAQ numeric station ID."
           - name: _ingested_at
-            description: "Ingestion timestamp"
+            description: "ISO 8601 UTC timestamp set by the ingestion script."
           - name: _country_code
-            description: "Country code added at ingest"
+            description: "ISO country code added at ingestion time."

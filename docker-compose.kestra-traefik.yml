@@ -3,18 +3,19 @@ version: '3.8'
 services:
   kestra_postgres:
     image: postgres:16-alpine
-    container_name: kestra_postgres
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-kestra}
-      POSTGRES_USER: ${POSTGRES_USER:-kestra}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kestra_password}
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: kestra_password
     volumes:
       - kestra_postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      test: ["CMD-SHELL", "pg_isready -d kestra -U kestra"]
       interval: 30s
       timeout: 10s
       retries: 10
+    networks:
+      - n8n-compose_default
 
   kestra:
     image: geowildcat/kestra:latest
@@ -22,6 +23,7 @@ services:
     command: ["server", "standalone"]
     volumes:
       - ./kestra_data:/app/storage
+      - ./kestra/flows:/app/flows
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/opt/app
       - ./dbt:/opt/app/dbt:ro
@@ -29,20 +31,21 @@ services:
       - ./google_credentials.json:/opt/app/google_credentials.json:ro
       - ./google_credentials.json:/root/.gcp/service-account.json:ro
     environment:
-      # JVM tuning for low-memory VM
-      JAVA_OPTS: "-Xmx512m -Xms256m"
+      JAVA_OPTS: "-Xmx1024m -Xms512m"
       KESTRA_CONFIGURATION: |
         datasources:
           postgres:
-            url: jdbc:postgresql://kestra_postgres:5432/${POSTGRES_DB:-kestra}
+            url: jdbc:postgresql://kestra_postgres:5432/kestra
             driverClassName: org.postgresql.Driver
-            username: ${POSTGRES_USER:-kestra}
-            password: ${POSTGRES_PASSWORD:-kestra_password}
+            username: kestra
+            password: kestra_password
         kestra:
+          url: https://kestra.letterscode.com/
           server:
             basicAuth:
-              username: ${KESTRA_BASIC_AUTH_USERNAME:-kestra@letterscode.com}
-              password: ${KESTRA_BASIC_AUTH_PASSWORD:-changeme}
+              enabled: true
+              username: "geowildcat@gmail.com"
+              password: "Admin1234!"
           repository:
             type: postgres
           storage:
@@ -54,29 +57,37 @@ services:
           tasks:
             tmpDir:
               path: /tmp/kestra-wd/tmp
-        # Micronaut file watching enables local flow synchronization from disk into the repository
-        micronaut:
-          io:
-            watch:
-              enabled: true
-              paths:
-                - /app/flows
-        url: http://localhost:8080/
       GOOGLE_APPLICATION_CREDENTIALS: "/root/.gcp/service-account.json"
+    labels:
+      - "traefik.enable=true"
+      - 'traefik.http.routers.kestra.rule=Host(`kestra.letterscode.com`)'
+      - "traefik.http.routers.kestra.entrypoints=websecure"
+      - "traefik.http.routers.kestra.tls=true"
+      - "traefik.http.routers.kestra.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.kestra.loadbalancer.server.port=8080"
+    networks:
+      - n8n-compose_default
+    restart: unless-stopped
     ports:
       - "8080:8080"
       - "8081:8081"
     depends_on:
-      - kestra_postgres
+      kestra_postgres:
+        condition: service_healthy
     # Docker Compose memory hint (may be ignored outside swarm)
     deploy:
       resources:
         limits:
-          memory: 800M
-    mem_limit: 800m
+          memory: 1500M
+    mem_limit: 1500m
 
 volumes:
   kestra_postgres_data:
     driver: local
   kestra_data:
     driver: local
+
+networks:
+  n8n-compose_default:
+    external: true
+    name: n8n-compose_default

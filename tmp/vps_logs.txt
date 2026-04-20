@@ -1,0 +1,841 @@
+/opt/breathe-flow-pipeline/docker-compose.kestra-traefik.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+breathe-flow-pipeline_kestra_1  | 21:07:25.294 WARN  main         i.m.p.PrometheusMeterRegistry The meter (MeterId{name='netty.alloc.arena.allocation.count', tags=[tag(arena.number=0),tag(memory=direct),tag(size=small)]}) registration has failed: Prometheus requires that all meters with the same name have the same set of tag keys. There is already an existing meter named 'netty_alloc_arena_allocation_count' containing tag keys [arena_number, memory]. The meter you are attempting to register has keys [arena_number, memory, size]. Note that subsequent logs will be logged at debug level.
+breathe-flow-pipeline_kestra_1  | 21:07:28.439 INFO  main         org.flywaydb.core.FlywayExecutor Database: jdbc:postgresql://kestra_postgres:5432/kestra (PostgreSQL 16.13)
+breathe-flow-pipeline_kestra_1  | 21:07:28.479 INFO  main         o.f.core.internal.command.DbValidate Successfully validated 52 migrations (execution time 00:00.079s)
+breathe-flow-pipeline_kestra_1  | 21:07:28.690 INFO  main         o.f.core.internal.command.DbMigrate Current version of schema "public": 1.56
+breathe-flow-pipeline_kestra_1  | 21:07:28.512 INFO  main         o.f.core.internal.command.DbMigrate Schema "public" is up to date. No migration necessary.
+breathe-flow-pipeline_kestra_1  | 21:07:30.414 WARN  main         o.j.i.D.logVersionSupport Version mismatch         : Database version is older than what dialect SQLDialect.POSTGRES supports: 16.13. Consider https://www.jooq.org/download/support-matrix to see what jOOQ version and edition supports which RDBMS versions.
+breathe-flow-pipeline_kestra_1  | 21:07:32.514 INFO  main         i.kestra.core.plugins.PluginScanner Registered 106 core plugins (scan done in 489ms)
+breathe-flow-pipeline_kestra_1  | 21:07:32.742 INFO  main         i.k.c.c.s.AbstractServerCommand Machine information: 3 available cpu(s), 989MB max memory, Java version 25.0.2+10-LTS
+breathe-flow-pipeline_kestra_1  | 21:07:32.170 INFO  standalone   io.kestra.cli.AbstractCommand Starting Kestra 1.3.11 with environments [cli] [revision b75a14e / 2026-04-17T11:33]
+breathe-flow-pipeline_kestra_1  | 21:07:32.825 INFO  standalone   i.kestra.core.plugins.PluginScanner Registered 0 plugins from 0 groups (scan done in 7ms)
+breathe-flow-pipeline_kestra_1  | 21:07:34.322 INFO  standalone   io.kestra.cli.AbstractCommand Main server is running at http://00229f5da610:8080, management server at http://00229f5da610:8081
+breathe-flow-pipeline_kestra_1  | 21:07:34.705 INFO  standalone   io.kestra.cli.AbstractCommand Health endpoint is available at http://00229f5da610:8081/health
+breathe-flow-pipeline_kestra_1  | 21:07:35.588 INFO  standalone   i.k.w.services.FlowAutoLoaderService Loaded 0 "Getting Started" flows from community blueprints. You can disable this feature by setting 'kestra.tutorialFlows.enabled=false'.
+breathe-flow-pipeline_kestra_1  | 21:07:36.222 INFO  standalone-runner_1 io.kestra.worker.DefaultWorker Worker started with 24 thread(s)
+breathe-flow-pipeline_kestra_1  | 21:07:36.827 INFO  standalone-runner_3 io.kestra.jdbc.runner.JdbcIndexer Indexer started
+breathe-flow-pipeline_kestra_1  | 21:07:36.202 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: /app/flows/openaq_ingestion_flow.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.http.tasks.Post
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener$1.visitFile(FileChangedEventListener.java:215)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener$1.visitFile(FileChangedEventListener.java:201)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.loadFlowsFromFolder(FileChangedEventListener.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.setup(FileChangedEventListener.java:195)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:65)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.http.tasks.Post
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 22 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.780 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: /app/flows/openaq_to_bigquery.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener$1.visitFile(FileChangedEventListener.java:215)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener$1.visitFile(FileChangedEventListener.java:201)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.nio.file.Files.walkFileTree(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.loadFlowsFromFolder(FileChangedEventListener.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.setup(FileChangedEventListener.java:195)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:65)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 22 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.387 INFO  standalone   i.k.c.s.FileChangedEventListener Loaded files from the folder /app/flows
+breathe-flow-pipeline_kestra_1  | 21:07:36.408 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'business-automation' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.934 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'business-processes' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.441 INFO  standalone-runner_0 io.kestra.jdbc.runner.JdbcExecutor Executor started with 4 thread(s)
+breathe-flow-pipeline_kestra_1  | 21:07:36.199 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'data-engineering-pipeline' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.537 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'hello-world' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.796 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'infrastructure-automation' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.902 WARN  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'microservices-and-apis' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.listen(FlowListeners.java:139)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.run(AbstractScheduler.java:151)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.jdbc.runner.JdbcScheduler.run(JdbcScheduler.java:47)
+breathe-flow-pipeline_kestra_1  |       at io.micrometer.core.instrument.internal.TimedRunnable.run(TimedRunnable.java:49)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.lang.Thread.run(Unknown Source)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 18 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.376 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'business-automation' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.902 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'business-processes' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.609 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'data-engineering-pipeline' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.696 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'hello-world' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.085 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'infrastructure-automation' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.735 WARN  standalone   i.kestra.scheduler.AbstractScheduler Can't inject plugin defaults on tenant main, namespace 'tutorial', flow 'microservices-and-apis' with errors 'jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook'
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:274)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:201)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.lambda$initializedTriggers$0(AbstractScheduler.java:360)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline$3$1.accept(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.copyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.AbstractPipeline.evaluate(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.stream.ReferencePipeline.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.scheduler.AbstractScheduler.initializedTriggers(AbstractScheduler.java:365)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.lambda$notifyConsumers$0(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at java.base/java.util.ArrayList.forEach(Unknown Source)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.notifyConsumers(FlowListeners.java:124)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.runners.FlowListeners.run(FlowListeners.java:95)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:67)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.injectAllDefaults(PluginDefaultService.java:264)
+breathe-flow-pipeline_kestra_1  |       ... 30 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.019 INFO  standalone   i.k.c.s.FileChangedEventListener Flow business-automation has been written to file /app/flows/main_tutorial_business-automation.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.800 INFO  standalone   i.k.c.s.FileChangedEventListener Flow business-processes has been written to file /app/flows/main_tutorial_business-processes.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.957 INFO  standalone   i.k.c.s.FileChangedEventListener Flow data-engineering-pipeline has been written to file /app/flows/main_tutorial_data-engineering-pipeline.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.001 INFO  standalone   i.k.c.s.FileChangedEventListener Flow hello-world has been written to file /app/flows/main_tutorial_hello-world.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.974 INFO  standalone   i.k.c.s.FileChangedEventListener Flow infrastructure-automation has been written to file /app/flows/main_tutorial_infrastructure-automation.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.475 INFO  standalone   i.k.c.s.FileChangedEventListener Flow microservices-and-apis has been written to file /app/flows/main_tutorial_microservices-and-apis.yml
+breathe-flow-pipeline_kestra_1  | 21:07:36.274 INFO  standalone-runner_2 i.kestra.scheduler.AbstractScheduler Scheduler started
+breathe-flow-pipeline_kestra_1  | 21:07:36.917 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_business-automation.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.898 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_business-automation.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.jdbc.sqlite.Queries
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.480 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_business-processes.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.667 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_business-processes.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.715 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_data-engineering-pipeline.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.458 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_data-engineering-pipeline.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.python.Script
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.537 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_hello-world.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.745 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_hello-world.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.scripts.shell.Commands
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.453 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_infrastructure-automation.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.077 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_infrastructure-automation.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.docker.Build
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.063 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_microservices-and-apis.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:36.510 WARN  standalone   i.k.c.s.FileChangedEventListener Error while parsing flow: main_tutorial_microservices-and-apis.yml
+breathe-flow-pipeline_kestra_1  | io.kestra.core.exceptions.FlowProcessingException: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:351)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.parseFlow(FileChangedEventListener.java:244)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListening(FileChangedEventListener.java:135)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.services.FileChangedEventListener.startListeningFromConfig(FileChangedEventListener.java:105)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:168)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.commands.servers.StandAloneCommand.call(StandAloneCommand.java:26)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.executeUserObject(CommandLine.java:2031)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.access$1500(CommandLine.java:148)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2469)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2461)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.handle(CommandLine.java:2423)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2277)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine$RunLast.execute(CommandLine.java:2425)
+breathe-flow-pipeline_kestra_1  |       at picocli.CommandLine.execute(CommandLine.java:2174)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.execute(App.java:96)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:61)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.runCli(App.java:55)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.cli.App.main(App.java:51)
+breathe-flow-pipeline_kestra_1  | Caused by: jakarta.validation.ConstraintViolationException: Invalid type: io.kestra.plugin.slack.notifications.SlackIncomingWebhook
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.toConstraintViolationException(YamlParser.java:127)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.serializers.YamlParser.parse(YamlParser.java:52)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:401)
+breathe-flow-pipeline_kestra_1  |       at io.kestra.core.services.PluginDefaultService.parseFlowWithAllDefaults(PluginDefaultService.java:349)
+breathe-flow-pipeline_kestra_1  |       ... 17 common frames omitted
+breathe-flow-pipeline_kestra_1  | 21:07:40.965 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:40.624Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 100
+breathe-flow-pipeline_kestra_1  | 21:07:41.848 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:41.073Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 23
+breathe-flow-pipeline_kestra_1  | 21:07:41.119 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:41.094Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 388
+breathe-flow-pipeline_kestra_1  | 21:07:41.480 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:41.092Z | GET /api/v1/main/flows/search?sort=namespace:desc&size=25&page=1 HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 4787 | duration: 425
+breathe-flow-pipeline_kestra_1  | 21:07:41.020 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:41.694Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 18
+breathe-flow-pipeline_kestra_1  | 21:07:41.732 WARN  io-executor-thread-1 i.m.core.instrument.MeterRegistry This Gauge has been already registered (MeterId{name='kestra.queue.poll.size', tags=[tag(queue_type=io.kestra.core.models.executions.Execution)]}), the registration will be ignored. Note that subsequent logs will be logged at debug level.
+breathe-flow-pipeline_kestra_1  | 21:07:42.035 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:41.866Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 377
+breathe-flow-pipeline_kestra_1  | 21:07:42.415 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:41.858Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 391
+breathe-flow-pipeline_kestra_1  | 21:07:42.657 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:41.835Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 432
+breathe-flow-pipeline_kestra_1  | 21:07:42.972 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:41.884Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 381
+breathe-flow-pipeline_kestra_1  | 21:07:42.902 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:41.858Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 429
+breathe-flow-pipeline_kestra_1  | 21:07:42.533 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:41.853Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 431
+breathe-flow-pipeline_kestra_1  | 21:07:42.452 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:41.734Z | POST /api/v1/main/executions/latest HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 2 | duration: 648
+breathe-flow-pipeline_kestra_1  | 21:07:47.969 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:47.607Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 9
+breathe-flow-pipeline_kestra_1  | 21:07:47.283 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:47.902Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 12
+breathe-flow-pipeline_kestra_1  | 21:07:47.474 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:47.901Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 28
+breathe-flow-pipeline_kestra_1  | 21:07:47.707 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:47.903Z | GET /api/v1/main/flows/search?sort=namespace:desc&size=25&page=1 HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 4787 | duration: 50
+breathe-flow-pipeline_kestra_1  | 21:07:48.563 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:48.143Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 14
+breathe-flow-pipeline_kestra_1  | 21:07:48.884 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:48.370Z | POST /api/v1/main/executions/latest HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 2 | duration: 16
+breathe-flow-pipeline_kestra_1  | 21:07:48.571 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:48.511Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 33
+breathe-flow-pipeline_kestra_1  | 21:07:48.766 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:48.521Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 47
+breathe-flow-pipeline_kestra_1  | 21:07:48.098 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:48.517Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 51
+breathe-flow-pipeline_kestra_1  | 21:07:48.396 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:48.521Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 53
+breathe-flow-pipeline_kestra_1  | 21:07:48.945 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:48.521Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 58
+breathe-flow-pipeline_kestra_1  | 21:07:48.111 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:48.518Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 65
+breathe-flow-pipeline_kestra_1  | 21:07:52.534 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:52.416Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 17
+breathe-flow-pipeline_kestra_1  | 21:07:52.405 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:52.703Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 27
+breathe-flow-pipeline_kestra_1  | 21:07:52.980 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:52.699Z | GET /api/v1/main/namespaces/search?sort=id:asc&page=1&size=1000 HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 57 | duration: 50
+breathe-flow-pipeline_kestra_1  | 21:07:52.184 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:52.955Z | GET /api/v1/main/namespaces/search?sort=id:asc&page=1&size=1000 HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 57 | duration: 11
+breathe-flow-pipeline_kestra_1  | 21:07:55.273 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:55.638Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 7
+breathe-flow-pipeline_kestra_1  | 21:07:55.561 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:55.875Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 13
+breathe-flow-pipeline_kestra_1  | 21:07:55.708 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:55.882Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 13
+breathe-flow-pipeline_kestra_1  | 21:07:56.078 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:56.113Z | GET /api/v1/main/flows/search?sort=namespace:desc&size=25&page=1 HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 4787 | duration: 28
+breathe-flow-pipeline_kestra_1  | 21:07:56.121 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:56.359Z | POST /api/v1/main/executions/latest HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 2 | duration: 14
+breathe-flow-pipeline_kestra_1  | 21:07:56.379 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:56.446Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 30
+breathe-flow-pipeline_kestra_1  | 21:07:56.366 INFO  default-eventLoopGroup-2-3 io.kestra.webserver.access 2026-04-20T21:07:56.454Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 32
+breathe-flow-pipeline_kestra_1  | 21:07:56.635 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:56.458Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 32
+breathe-flow-pipeline_kestra_1  | 21:07:56.397 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:56.456Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 37
+breathe-flow-pipeline_kestra_1  | 21:07:56.032 INFO  default-eventLoopGroup-2-2 io.kestra.webserver.access 2026-04-20T21:07:56.453Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 39
+breathe-flow-pipeline_kestra_1  | 21:07:56.154 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:56.453Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 43
+breathe-flow-pipeline_kestra_1  | 21:07:57.914 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:57.493Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 6
+breathe-flow-pipeline_kestra_1  | 21:07:57.304 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:57.755Z | GET /api/v1/main/flows/search?size=1&onlyTotal=true&filters%5Bnamespace%5D%5BNOT_EQUALS%5D=tutorial HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 14
+breathe-flow-pipeline_kestra_1  | 21:07:57.441 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:57.759Z | GET /api/v1/configs HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 486 | duration: 17
+breathe-flow-pipeline_kestra_1  | 21:07:58.584 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:58.008Z | GET /api/v1/main/executions/search?size=25&page=1&sort=state.startDate:desc&filters%5BtimeRange%5D%5BEQUALS%5D=PT24H HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 27
+breathe-flow-pipeline_kestra_1  | 21:07:58.963 INFO  default-eventLoopGroup-2-1 io.kestra.webserver.access 2026-04-20T21:07:58.306Z | POST /api/v1/main/dashboards/charts/preview HTTP/1.1 | status: 200 | ip: 179.222.238.229 | length: 24 | duration: 14
+
