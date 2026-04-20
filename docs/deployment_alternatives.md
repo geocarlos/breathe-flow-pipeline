@@ -25,7 +25,7 @@ Local Postgres vs Cloud SQL
 - You can run Postgres locally on the VPS (example compose provided) or use Cloud SQL (recommended for reliability). To use Cloud SQL, remove the `kestra_postgres` service and update `datasources.postgres.url` to point to your Cloud SQL instance (or use the Cloud SQL Proxy).
 
 docker-compose (VPS) recommendations
-- Use the provided `docker-compose.vps.yml` for a VPS-friendly configuration.
+- Use the provided `docker-compose.yml` for a VPS-friendly configuration.
 - Ensure the Kestra JVM heap is sized for available RAM: for 4GB use `-Xmx1536m`; for 2GB use `-Xmx512m`.
 
 Systemd service
@@ -38,4 +38,4 @@ Cloud Run as alternative
 - Keep ingestion on Cloud Run. If you prefer Kestra on managed infra, you can run Kestra on Cloud Run but must use Cloud SQL for persistence and an external storage solution (S3/GCS) for flows and artifacts.
 
 Next steps
-- If you want, I can commit the `docker-compose.vps.yml` and systemd unit now and help tailor it to your target VPS (Contabo) or to switch Postgres to Cloud SQL.
+- If you want, I can commit the `docker-compose.yml` and systemd unit now and help tailor it to your target VPS (Contabo) or to switch Postgres to Cloud SQL.

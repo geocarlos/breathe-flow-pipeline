@@ -24,7 +24,10 @@ services:
       - ./kestra_data:/app/storage
       - /var/run/docker.sock:/var/run/docker.sock
       - ./scripts:/opt/app
+      - ./dbt:/opt/app/dbt:ro
+      - ./dbt/profiles.yml:/opt/app/.dbt/profiles.yml:ro
       - ./google_credentials.json:/opt/app/google_credentials.json:ro
+      - ./google_credentials.json:/root/.gcp/service-account.json:ro
     environment:
       # JVM tuning for low-memory VM
       JAVA_OPTS: "-Xmx512m -Xms256m"
@@ -52,6 +55,7 @@ services:
             tmpDir:
               path: /tmp/kestra-wd/tmp
         url: http://localhost:8080/
+      GOOGLE_APPLICATION_CREDENTIALS: "/root/.gcp/service-account.json"
     ports:
       - "8080:8080"
       - "8081:8081"
