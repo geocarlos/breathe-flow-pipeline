@@ -81,6 +81,29 @@ services:
           memory: 1500M
     mem_limit: 1500m
 
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    environment:
+      GCP_PROJECT_ID: "${GCP_PROJECT_ID}"
+      BQ_DATASET: "${BQ_DATASET:-breathe_flow}"
+      GOOGLE_APPLICATION_CREDENTIALS: "/root/.gcp/service-account.json"
+    volumes:
+      - ./google_credentials.json:/root/.gcp/service-account.json:ro
+    labels:
+      - "traefik.enable=true"
+      - 'traefik.http.routers.dashboard.rule=Host(`dashboard.letterscode.com`)'
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.routers.dashboard.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8501"
+    networks:
+      - n8n-compose_default
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+
 volumes:
   kestra_postgres_data:
     driver: local

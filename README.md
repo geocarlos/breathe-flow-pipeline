@@ -57,7 +57,27 @@ The final dashboard provides insights into:
 - [X] API Ingestion Script (Python).
 - [X] Kestra Workflow Automation.
 - [X] Advanced dbt Modeling (Incremental loads).
-- [ ] Streamlit Dashboard Deployment.
+- [X] Streamlit Dashboard Deployment.
+
+## Dashboard
+
+Interactive Streamlit dashboard showing station coverage by country, powered by the `fct_station_coverage` dbt mart.
+
+- Source: [dashboard/app.py](dashboard/app.py)
+- Dockerfile: [Dockerfile.dashboard](Dockerfile.dashboard)
+
+**Run locally:**
+```bash
+pip install -r dashboard/requirements.txt
+export GCP_PROJECT_ID=your-project
+export BQ_DATASET=breathe_flow
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json
+streamlit run dashboard/app.py
+```
+
+**Deploy on VPS** (via `docker-compose.kestra-traefik.yml`):
+- Served at `https://dashboard.letterscode.com` via Traefik
+- Requires `GCP_PROJECT_ID` and `BQ_DATASET` env vars on the host
 
 ## Kestra PoC (local)
 A minimal PoC is scaffolded to run Kestra locally and execute the ingestion script.
