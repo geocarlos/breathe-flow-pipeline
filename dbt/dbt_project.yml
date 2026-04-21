@@ -1,0 +1,28 @@
+name: "breathe_flow_dbt"
+version: '1.0'
+config-version: 2
+
+profile: "breathe_flow_profile"
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+macro-paths: ["macros"]
+data-paths: ["data"]
+target-path: "target"
+clean-targets: ["target"]
+
+vars:
+  project: "{{ env_var('GCP_PROJECT_ID', '') }}"
+  # dbt output dataset (staging + mart tables land here)
+  dataset: "{{ env_var('BQ_DATASET', 'breathe_flow') }}"
+  # source raw data dataset (BigQuery table loaded from GCS)
+  source_dataset: "{{ env_var('BQ_SOURCE_DATASET', 'openaq') }}"
+
+models:
+  breathe_flow_dbt:
+    openaq:
+      +materialized: view
+      stg_openaq_raw:
+        +materialized: incremental
+      fct_station_coverage:
+        +materialized: incremental

@@ -1,0 +1,29 @@
+oot@kestra-vm:/opt/breathe-flow-pipeline# docker-compose -f docker-compose.yml up -d --build
+Building kestra
+[+] Building 1.2s (7/7) FINISHED                                                                                                                                                  docker:default
+ => [internal] load build definition from Dockerfile.kestra                                                                                                                                 0.1s
+ => => transferring dockerfile: 381B                                                                                                                                                        0.0s
+ => [internal] load metadata for docker.io/kestra/kestra:latest                                                                                                                             0.1s
+ => [internal] load .dockerignore                                                                                                                                                           0.0s
+ => => transferring context: 2B                                                                                                                                                             0.0s
+ => [1/3] FROM docker.io/kestra/kestra:latest@sha256:d01656e9f90d4d8690cdd6c15b4edb3280514319d47875a26e2438e75649de17                                                                       0.0s
+ => => resolve docker.io/kestra/kestra:latest@sha256:d01656e9f90d4d8690cdd6c15b4edb3280514319d47875a26e2438e75649de17                                                                       0.0s
+ => CACHED [2/3] RUN apt-get update -qq &&     apt-get install -y python3 python3-pip --no-install-recommends &&     rm -rf /var/lib/apt/lists/*                                            0.0s
+ => CACHED [3/3] RUN python3 -m pip install --no-cache-dir     google-cloud-storage     google-cloud-secret-manager     google-auth     python-dotenv     requests                          0.0s
+ => exporting to image                                                                                                                                                                      0.3s
+ => => exporting layers                                                                                                                                                                     0.0s
+ => => exporting manifest sha256:ea7ab074b2070f626f3a4496f2e93ff4d0bb8bea09fdc68b256e72a23617e6ff                                                                                           0.0s
+ => => exporting config sha256:588fea598486645f694a7d695001a5563486feb65974b06a0e3b8dcb5bfe382a                                                                                             0.0s
+ => => exporting attestation manifest sha256:b0667711607e787ef93998337a7bf85fcdf1407948dc9d7e3f3bc9f28eac1da4                                                                               0.0s
+ => => exporting manifest list sha256:c573a763cd2654beee84ef854a97e2e1710f98d026c0805fcbc977b7c590fe9d                                                                                      0.0s
+ => => naming to docker.io/library/breathe-flow-pipeline_kestra:latest                                                                                                                      0.0s
+ => => unpacking to docker.io/library/breathe-flow-pipeline_kestra:latest                                                                                                                   0.0s
+Starting breathe-flow-pipeline_postgres_1 ... done
+Recreating kestra                         ... error
+
+ERROR: for kestra  No such image: sha256:e6fe178885f66ffddc558dd8f2f4049ea26ed93a8dee3e6cf3e76e0d06c79cd9
+
+ERROR: for kestra  No such image: sha256:e6fe178885f66ffddc558dd8f2f4049ea26ed93a8dee3e6cf3e76e0d06c79cd9
+ERROR: The image for the service you're trying to recreate has been removed. If you continue, volume data could be lost. Consider backing up your data before continuing.
+
+Continue with the new image? [yN]

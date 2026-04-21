@@ -1,0 +1,42 @@
+FROM kestra/kestra:latest
+
+# Run as root to install system packages and copy files
+USER root
+
+# Install Python and pip, then all runtime dependencies including dbt-bigquery
+RUN apt-get update -qq && \
+    apt-get install -y python3 python3-pip --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy Kestra flows and helper scripts into the image
+# Provide flows at both /opt/kestra/flows (default) and /app/flows (compose mount target)
+COPY ./kestra/flows /opt/kestra/flows
+COPY ./kestra/flows /app/flows
+COPY ./scripts /opt/app
+
+# Ensure flows and scripts are readable and owned by the kestra user
+RUN chown -R kestra:kestra /opt/kestra/flows /app/flows /opt/app && \
+    chmod -R a+rX /opt/kestra/flows /app/flows /opt/app
+
+# Install Python dependencies required by the helper scripts and dbt transformations
+RUN python3 -m pip install --no-cache-dir \
+    google-cloud-storage \
+    google-cloud-secret-manager \
+    google-auth \
+    python-dotenv \
+    requests \
+    dbt-bigquery
+
+# Copy entrypoint script, strip Windows line endings, and make it executable
+COPY entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh && chmod +x /entrypoint.sh
+
+# Ensure scripts are executable
+RUN chmod -R 755 /opt/app
+
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["server", "standalone"]
+
+# Drop back to the non-root kestra user
+USER kestra

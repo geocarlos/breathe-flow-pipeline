@@ -54,10 +54,89 @@ The final dashboard provides insights into:
 
 ## Project Roadmap
 - [X] Initial Infrastructure with Terraform.
-- [ ] API Ingestion Script (Python).
-- [ ] Kestra Workflow Automation.
-- [ ] Advanced dbt Modeling (Incremental loads).
-- [ ] Streamlit Dashboard Deployment.
+- [X] API Ingestion Script (Python).
+- [X] Kestra Workflow Automation.
+- [X] Advanced dbt Modeling (Incremental loads).
+- [X] Streamlit Dashboard Deployment.
+
+## Dashboard
+
+Interactive Streamlit dashboard showing station coverage by country, powered by the `fct_station_coverage` dbt mart.
+
+- Source: [dashboard/app.py](dashboard/app.py)
+- Dockerfile: [Dockerfile.dashboard](Dockerfile.dashboard)
+
+**Run locally:**
+```bash
+pip install -r dashboard/requirements.txt
+export GCP_PROJECT_ID=your-project
+export BQ_DATASET=breathe_flow
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa.json
+streamlit run dashboard/app.py
+```
+
+**Deploy on VPS** (via `docker-compose.kestra-traefik.yml`):
+- Served at `https://dashboard.letterscode.com` via Traefik
+- Requires `GCP_PROJECT_ID` and `BQ_DATASET` env vars on the host
+
+## Kestra PoC (local)
+A minimal PoC is scaffolded to run Kestra locally and execute the ingestion script.
+
+- Flow: [kestra/flows/breatheflow_openaq_to_bigquery.yml](kestra/flows/breatheflow_openaq_to_bigquery.yml)
+- Ingest image Dockerfile: [Dockerfile.ingest](Dockerfile.ingest)
+- Compose: [docker-compose.yml](docker-compose.yml)
+
+Quick start (local):
+```bash
+# Ensure you DO NOT commit credentials. Provide them via env or mount.
+docker compose up -d
+# Kestra UI: http://localhost:8081  (API server at http://localhost:8080)
+# The `ingest` container is left running for ad-hoc runs; to run it manually:
+docker compose exec ingest python ingest_openaq.py
+```
+
+Notes:
+- The PoC mounts `./scripts` into Kestra so the Bash task can call the Python script.
+- For production, create a dedicated service account, store credentials in Secret Manager, and avoid committing `google_credentials.json`.
+For a low-cost production-ready demo, prefer Cloud Run + Cloud Scheduler (no cluster needed).
+
+Cloud Run + Scheduler (PoC)
+:
+	The repository includes Terraform scaffolding to create a Cloud Run service and a Cloud Scheduler job that POSTs to the service on a cron schedule. This path is low-cost and suitable for the capstone demo.
+
+Files:
+- `terraform/cloud_run_scheduler.tf` — Cloud Run + Scheduler resources (disabled by default).
+- `cloudbuild.yaml` — Cloud Build config to build and push the ingestion image to GCR.
+
+To enable and deploy (high-level):
+
+```bash
+cd terraform
+# Enable creation in terraform vars
+terraform apply -var 'create_cloud_run=true' -var 'cloud_run_image=gcr.io/<PROJECT_ID>/openaq-ingest:latest'
+# Or build and push the image via Cloud Build first:
+gcloud builds submit --tag gcr.io/<PROJECT_ID>/openaq-ingest:latest
+
+# Once the Cloud Run service is created, you can test the endpoint:
+gcloud run services invoke openaq-ingest --region ${REGION} --data='{}'
+```
+
+Security notes:
+- The scheduler uses a service account to authenticate when calling Cloud Run; the Terraform scaffold creates service accounts for the Cloud Run runtime and Scheduler invoking role.
+- Keep service account keys out of the repo; prefer IAM roles and deploy-time service account assignment.
+
+Optional SA key generation (Terraform)
+:
+	The Terraform module now includes an optional toggle to create a long-lived service account key for the Kestra service account. This is intended only for local PoC usage. To enable, run Terraform with the variable:
+
+```bash
+terraform apply -var 'create_kestra_sa_key=true'
+```
+
+Warnings:
+- Long-lived JSON keys are sensitive and will be stored in Terraform state. Prefer Workload Identity (GKE) or instance service account bindings for production.
+- If you enable key creation, download the key securely and delete it from the Terraform state if you don't need it persisted.
+
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
